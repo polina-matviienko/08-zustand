@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Note } from "@/types/note";
-import { deleteNote } from "@/lib/api";
+import { deleteNote } from "@/lib/api/api";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import css from "./NoteList.module.css";
 

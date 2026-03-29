@@ -1,5 +1,11 @@
 import axios from "axios";
-import { Note } from "../types/note";
+import { Note, NoteTag } from "../../types/note";
+
+export interface CreateNotePayload {
+  title: string;
+  content: string;
+  tag: NoteTag;
+}
 
 export interface FetchNotesResponse {
   notes: Note[];
@@ -40,9 +46,7 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
   return data;
 };
 
-export const createNote = async (
-  note: Omit<Note, "id" | "createdAt" | "updatedAt">,
-): Promise<Note> => {
+export const createNote = async (note: CreateNotePayload): Promise<Note> => {
   const { data } = await noteApi.post<Note>("/notes", note);
   return data;
 };
