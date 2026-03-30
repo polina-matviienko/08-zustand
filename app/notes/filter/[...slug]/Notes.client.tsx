@@ -3,30 +3,28 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
+import Link from "next/link";
 
 import { fetchNotes } from "@/lib/api/api";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./NotesPage.module.css";
 import { NoteTag } from "@/types/note";
 
 interface NotesClientProps {
-  category?: NoteTag | string;
+  category?: NoteTag;
 }
 
 export default function NotesClient({ category }: NotesClientProps) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [isModalOpen, setModalOpen] = useState(false);
 
   const [debouncedSearch] = useDebounce(search, 500);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["notes", page, debouncedSearch, 12, category],
-    queryFn: () => fetchNotes(page, debouncedSearch, 12, category as string),
+    queryFn: () => fetchNotes(page, debouncedSearch, 12, category),
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5,
   });
@@ -49,9 +47,9 @@ export default function NotesClient({ category }: NotesClientProps) {
           />
         )}
 
-        <button className={css.button} onClick={() => setModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </div>
 
       {isLoading && <p>Loading notes...</p>}
@@ -63,12 +61,6 @@ export default function NotesClient({ category }: NotesClientProps) {
         !isLoading && (
           <p className={css.empty}>No notes found in this category.</p>
         )
-      )}
-
-      {isModalOpen && (
-        <Modal onClose={() => setModalOpen(false)}>
-          <NoteForm onClose={() => setModalOpen(false)} />
-        </Modal>
       )}
     </div>
   );
