@@ -19,8 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NoteHub",
     description: "Your digital space for thoughts and notes.",
-    // Перевірити свій домен Vercel після деплою
-    url: "https://08-zustand-sage-nine.vercel.app",
+    url: "08-zustand-five-psi.vercel.app",
     siteName: "NoteHub",
     images: [
       {

@@ -26,8 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description,
-        // Перевірити свій домен Vercel після деплою
-        url: `https://08-zustand-sage-nine.vercel.app/notes/${id}`,
+        url: `08-zustand-five-psi.vercel.app/notes/${id}`,
         siteName: "NoteHub",
         images: [
           {

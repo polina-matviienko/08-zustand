@@ -7,8 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NoteHub: Page Not Found",
     description: "The requested page was not found in NoteHub application.",
-    // Перевірити свій домен Vercel після деплою
-    url: "https://08-zustand-sage-nine.vercel.app/not-found",
+    url: "08-zustand-five-psi.vercel.app/not-found",
     siteName: "NoteHub",
     images: [
       {
