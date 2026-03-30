@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Note, NoteTag } from "../../types/note";
+import { Note, NoteTag } from "../types/note";
 
 export interface CreateNotePayload {
   title: string;
